@@ -1,5 +1,6 @@
 <?php
 $all_people = &$Planet->getPeople();
+$categories = &$Planet->getCategories();
 usort($all_people, array('PlanetFeed', 'compare'));
 ?>
 <div id="sidebar">
@@ -31,4 +32,14 @@ usort($all_people, array('PlanetFeed', 'compare'));
             <li><a href="?type=archive"><?=_g('See all headlines')?></a></li>
         </ul>
     </div>
+	
+	<div>
+	    <h2><?=_g('Categories')?></h2>
+        <ul>
+		<?php foreach ($categories as $category) : ?>
+			<li><a href="index.php?type=archive&filter=<?php echo urlencode($category); ?>"><?php echo htmlspecialchars($category); ?></a></li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+	
 </div>

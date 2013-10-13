@@ -13,7 +13,8 @@ class opml
             'TEXT'        => 'name',
             'TITLE'       => 'name',
             'XMLURL'      => 'feed',
-            'DESCRIPTION' => 'description'
+            'DESCRIPTION' => 'description',
+			'CATEGORY'	  => 'category'
             );
 
 
@@ -57,7 +58,7 @@ class opml
             $this->title = $cdata;
         }
     }
-
+	
     function getTitle(){
         return $this->title;
     }
@@ -95,7 +96,7 @@ class OpmlManager
         $out.= '</head>'."\n";
         $out.= '<body>'."\n";
         foreach ($opml->entries as $person){
-            $out.= '<outline text="' . htmlspecialchars($person['name']) . '" htmlUrl="' . htmlspecialchars($person['website']) . '" xmlUrl="' . htmlspecialchars($person['feed']) . '"/>'."\n";
+            $out.= '<outline text="' . htmlspecialchars($person['name']) . '" htmlUrl="' . htmlspecialchars($person['website']) . '" xmlUrl="' . htmlspecialchars($person['feed']) . '" category="' . htmlspecialchars($person['category']) . '"/>'."\n";
         }
         $out.= '</body>'."\n";
         $out.= '</opml>';

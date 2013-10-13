@@ -1,21 +1,60 @@
 <?php
+
+
 $count = 0;
 $today = Array();
 $week = Array();
 $month = Array();
 $older = Array();
 $now = time();
+$category = null;
+
+if(isset($_GET['filter']))
+{
+	if(in_array(urldecode($_GET['filter']),$Planet->getCategories(),true))
+	{
+		$category = urldecode($_GET['filter']);
+	}
+}
 
 foreach ($items as $item) {
     $age = ($now - $item->get_date('U')) / (60*60*24);
     if ($age < 1) {
-        $today[] = $item;
+		if($category != null)
+		{
+			if($item->get_feed()->getCategory() == $category){
+				$today[] = $item;
+			}
+		} else {
+			$today[] = $item;
+		}
     } elseif ($age < 7) {
-        $week[] = $item;
+		if($category != null)
+		{
+			if($item->get_feed()->getCategory() == $category){
+				$week[] = $item;
+			}
+		} else {
+			$week[] = $item;
+		}
     } elseif ($age < 30) {
-        $month[] = $item;
+		if($category != null)
+		{
+			if($item->get_feed()->getCategory() == $category){
+				$month[] = $item;
+			}
+		} else {
+			$month[] = $item;
+		}
     } else {
-        $older[] = $item;
+		if($category != null)
+		{
+			if($item->get_feed()->getCategory() == $category){
+				$older[] = $item;
+			}
+		} else {
+			$older[] = $item;
+		}
     }
 }
 

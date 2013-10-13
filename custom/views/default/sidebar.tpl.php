@@ -1,5 +1,6 @@
 <?php
 $all_people = &$Planet->getPeople();
+$categories = &$Planet->getCategories();
 usort($all_people, array('PlanetFeed', 'compare'));
 ?>
 <div id="sidebar" class="aside">
@@ -22,6 +23,9 @@ usort($all_people, array('PlanetFeed', 'compare'));
         <h2><?=_g('Syndicate')?></h2>
         <ul>
             <li><img src="custom/img/feed.png" alt="<?=_g('Feed')?>" height="12" width="12" />&nbsp;<a href="atom.php"><?=_g('Feed (ATOM)')?></a></li>
+			<?php foreach ($categories as $category) : ?>
+			<li><img src="custom/img/feed.png" alt="<?=_g('Feed')?> <?php echo " ".htmlspecialchars($category); ?>" height="12" width="12" />&nbsp;<a href="atom.php?filter=<?php echo urlencode($category); ?>"><?=_g('Feed (ATOM)');?><?php echo " ".htmlspecialchars($category); ?></a></li>
+			<?php endforeach; ?>
         </ul>
     </div>
 
@@ -31,4 +35,13 @@ usort($all_people, array('PlanetFeed', 'compare'));
             <li><a href="?type=archive"><?=_g('See all headlines')?></a></li>
         </ul>
     </div>
+	
+	<div class="section">
+	    <h2><?=_g('Categories')?></h2>
+        <ul>
+		<?php foreach ($categories as $category) : ?>
+			<li><a href="index.php?filter=<?php echo urlencode($category); ?>"><?php echo htmlspecialchars($category); ?></a></li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
 </div>

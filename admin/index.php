@@ -99,6 +99,7 @@ ob_start();
                             <th><?=_g('Last entry')?></th>
                             <th><?=_g('Website link')?></th>
                             <th><?=_g('Feed link')?></th>
+							<th><?=_g('Category')?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +123,7 @@ ob_start();
                             </td>
                             <td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][website]" value="<?=$opml_person->getWebsite(); ?>" /></td>
                             <td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][feed]" value="<?=$opml_person->getFeed(); ?>" /></td>
+							<td><input type="text" size="30" class="text" name="opml[<?=$i; ?>][category]" value="<?=$opml_person->getCategory(); ?>" /></td>
                         </tr>
                         <?php } ?>
                     </tbody>

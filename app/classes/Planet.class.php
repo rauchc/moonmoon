@@ -38,6 +38,7 @@ class Planet
     public $items;
     public $people;
     public $errors;
+	public $categories;
 
     public function __construct($config=null)
     {
@@ -77,8 +78,22 @@ class Planet
     public function addPerson(&$feed)
     {
         $this->people[] = $feed;
+		if($feed->category != "")
+		{
+			$this->categories[] = $feed->category;
+		}
+		$this->categories = array_unique($this->categories, SORT_STRING);
     }
 
+	
+	/** 
+	* Returns the categories gathered
+	*/
+	public function getCategories()
+	{
+		return $this->categories;
+	}
+	
     /**
      * Load people from an OPML
      * @return integer Number of people loaded
@@ -97,7 +112,8 @@ class Planet
                 new PlanetFeed(
                     $opml_person['name'],
                     $opml_person['feed'],
-                    $opml_person['website']
+                    $opml_person['website'],
+					$opml_person['category']
                 )
             );
         }
@@ -124,7 +140,6 @@ class Planet
      */
     public function download($max_load=0.1)
     {
-
         $max_load_feeds = ceil(count($this->people) * $max_load);
 
         foreach ($this->people as $feed) {

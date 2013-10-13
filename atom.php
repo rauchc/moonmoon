@@ -8,13 +8,24 @@ $Planet->loadFeeds();
 $items = $Planet->getItems();
 $limit = $PlanetConfig->getMaxDisplay();
 $count = 0;
-
-header('Content-Type: application/atom+xml; charset=UTF-8');
+$category = null;
+$print = false;
+if(isset($_GET['filter']))
+{
+	if(in_array(urldecode($_GET['filter']),$Planet->getCategories(),true))
+	{
+		$category = urldecode($_GET['filter']);
+	}
+}
+//header('Content-Type: application/atom+xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title><?=htmlspecialchars($PlanetConfig->getName())?></title>
-    <subtitle><?=htmlspecialchars($PlanetConfig->getName())?></subtitle>
+	<?php
+	if($category != null) :?>
+		<subtitle><?=htmlspecialchars($category)?></subtitle>
+	<?php endif; ?>
     <id><?=$PlanetConfig->getUrl()?></id>
     <link rel="self" type="application/atom+xml" href="<?=$PlanetConfig->getUrl()?>atom.php" />
     <link rel="alternate" type="text/html" href="<?=$PlanetConfig->getUrl()?>" />
@@ -23,7 +34,17 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
 <?php $count = 0; ?>
 <?php foreach ($items as $item): ?>
-
+<?php if($category != null) {
+	if($item->get_feed()->getCategory() == $category){
+		$print = true;
+	} else {
+		$print = false;
+	}
+} else {
+	$print = true;
+}
+?>
+<?php if($print == true) : ?>
     <entry>
         <title type="html"><?=htmlspecialchars($item->get_feed()->getName())?> : <?=htmlspecialchars($item->get_title())?></title>
         <id><?=htmlspecialchars($item->get_permalink())?></id>
@@ -36,6 +57,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
     </entry>
 
 <?php if (++$count == $limit) break; ?>
+<?php endif; ?>
 <?php endforeach; ?>
 
 </feed>

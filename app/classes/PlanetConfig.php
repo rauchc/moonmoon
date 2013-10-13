@@ -36,7 +36,7 @@ class PlanetConfig
 
     public function getUrl()
     {
-        return $this->conf['url'];
+        return urldecode($this->conf['url']);
     }
 
     public function getName(){
@@ -83,7 +83,12 @@ class PlanetConfig
 
     public function getCategories()
     {
+		if(isset($this->conf['categories']))
+		{
         return $this->conf['categories'];
+		} else {
+			return null;
+		}
     }
 
     public function toYaml()

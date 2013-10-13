@@ -1,7 +1,15 @@
 <?php
 $limit = $PlanetConfig->getMaxDisplay();
 $count = 0;
-
+$category = null;
+$print = false;
+if(isset($_GET['filter']))
+{
+	if(in_array(urldecode($_GET['filter']),$Planet->getCategories(),true))
+	{
+		$category = urldecode($_GET['filter']);
+	}
+}
 header('Content-type: text/html; charset=UTF-8');
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -32,35 +40,45 @@ header('Content-type: text/html; charset=UTF-8');
                 </div>
             <?php else : ?>
                 <?php foreach ($items as $item): ?>
-                    <?php
-                    $arParsedUrl = parse_url($item->get_feed()->getWebsite());
-                    $host = 'from-' . preg_replace('/[^a-zA-Z0-9]/i', '-', $arParsedUrl['host']);
+                    <?php if($category != null) {
+							if($item->get_feed()->getCategory() == $category){
+								$print = true;
+							} else {
+								$print = false;
+							}
+						} else {
+							$print = true;
+						} ?>
+						<?php if($print == true) :
+							$arParsedUrl = parse_url($item->get_feed()->getWebsite());
+							$host = 'from-' . preg_replace('/[^a-zA-Z0-9]/i', '-', $arParsedUrl['host']);
                     ?>
-                    <div class="article <?php echo $host; ?>">
-                        <h2 class="article-title">
-                            <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
-                        </h2>
-                        <p class="article-info">
+						<div class="article <?php echo $host; ?>">
+							<h2 class="article-title">
+								<a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
+							</h2>
+							<p class="article-info">
 
-                            <?php echo ($item->get_author()? $item->get_author()->get_name() : 'Anonymous'); ?>,
-                            <?php
-                            $ago = time() - $item->get_date('U');
-                            //echo '<span title="'.Duration::toString($ago).' ago" class="date">'.date('d/m/Y', $item->get_date('U')).'</span>';
-                            echo '<span id="post'.$item->get_date('U').'" class="date">'.$item->get_date('d/m/Y').'</span>';
-                            ?>
+								<?php echo ($item->get_author()? $item->get_author()->get_name() : 'Anonymous'); ?>,
+								<?php
+								$ago = time() - $item->get_date('U');
+								//echo '<span title="'.Duration::toString($ago).' ago" class="date">'.date('d/m/Y', $item->get_date('U')).'</span>';
+								echo '<span id="post'.$item->get_date('U').'" class="date">'.$item->get_date('d/m/Y').'</span>';
+								?>
 
-                            |
+								|
 
-                            <?=_g('Source:')?> <?php
-                            $feed = $item->get_feed();
-                            echo '<a href="'.$feed->getWebsite().'" class="source">'.$feed->getName().'</a>';
-                            ?>
-                        </p>
-                        <div class="article-content">
-                            <?php echo $item->get_content(); ?>
-                        </div>
-                    </div>
-                    <?php if (++$count == $limit) { break; } ?>
+								<?=_g('Source:')?> <?php
+								$feed = $item->get_feed();
+								echo '<a href="'.$feed->getWebsite().'" class="source">'.$feed->getName().'</a>';
+								?>
+							</p>
+							<div class="article-content">
+								<?php echo $item->get_content(); ?>
+							</div>
+						</div>
+						<?php if (++$count == $limit) { break; } ?>
+					<?php endif;?>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
