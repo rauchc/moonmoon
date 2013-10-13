@@ -98,7 +98,7 @@ header('Content-type: text/html; charset=UTF-8');
                     <?php $feed = $item->get_feed(); ?>
                     <li>
                     <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
-                    <a href="<?php echo $item->get_permalink(); ?>" title="Go to original place"><?php echo $item->get_title(); ?></a>
+                    <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
                     </li>
                 <?php endforeach; ?>
                 </ul>

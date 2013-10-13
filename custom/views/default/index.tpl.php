@@ -38,7 +38,7 @@ header('Content-type: text/html; charset=UTF-8');
                     ?>
                     <div class="article <?php echo $host; ?>">
                         <h2 class="article-title">
-                            <a href="<?php echo $item->get_permalink(); ?>" title="Go to original place"><?php echo $item->get_title(); ?></a>
+                            <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
                         </h2>
                         <p class="article-info">
 
