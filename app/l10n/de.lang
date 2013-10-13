@@ -1,0 +1,163 @@
+;Are you sure you want to purge the cache?
+Wollen Sie den Cache wirklich leeren?
+
+;Clear cache
+Cache leeren
+
+;Clear cache:
+Cache leeren:
+
+;Clear
+Leeren
+
+;Clearing the cache will make moonmoon reload all feeds.
+Leeren des Caches f&uuml;hrt zum Neuladen aller Feeds.
+
+;Change administrator password
+&Auml;ndere Administratorkennwort
+
+;New password:
+Neues Passwort:
+
+;Change password
+Passwort &auml;ndern
+
+;Add Feed
+Neuer Feed
+
+;Link:
+Link:
+
+;Accepted formats are RSS and ATOM. If the link is not a feed, moonmoon will try to autodiscover the feed.
+Akzeptierte Formate sind RSS und ATOM. Falls der Link kein g&uuml;ltiges Format ist, wird moonmoon versuchen, diesen automatisch zu finden.
+
+;Manage existing feeds
+Existierende Feeds bearbeiten
+
+;Number of feeds: %s
+Anzahl Feeds: %s
+
+;Save changes
+&Auml;nderungen speichern
+
+;Delete selected Feeds
+L&ouml;sche ausgew&auml;hlte Feeds
+
+;Select :
+Auswahl :
+
+;All
+Alle
+
+;None
+Keine
+
+;Selection
+Auswahl
+
+;Name
+Name
+
+;Last entry
+Letzter Eintrag
+
+;Website link
+Link zur Webseite
+
+;Feed link
+Link zum Feed
+
+;Not in cache
+Nicht im Cache
+
+;Password:
+Passwort:
+
+;OK
+OK
+
+;moonmoon administration
+moonmoon Verwaltung
+
+;Back to main page
+Zur&uuml;ck zur Hauptseite
+
+;Logout
+Abmelden
+
+;Feeds
+Feeds
+
+;Administration
+Verwaltung
+
+;Powered by <a %s>moonmoon</a>
+Powered by <a %s>moonmoon</a>
+
+;No article
+Kein Artikel
+
+;No news, good news.
+Keine Neuigkeiten sind gute Neuigkeiten
+
+;Today
+Heute
+
+;Go to original place
+Zur Originalseite
+
+;This week
+Diese Woche
+
+;This month
+Diesen Monat
+
+;Older items
+&Auml;ltere Eintr&auml;ge
+
+;People
+Seiten
+
+;Feed
+Feed
+
+;Website
+Webseite
+
+;All feeds in OPML format
+Alle Feeds im OPML-Format
+
+;Syndicate
+Zusammenfassung
+
+;Feed (ATOM)
+Feed (ATOM)
+
+;Archives
+Archiv
+
+;See all headlines
+Alle &Uuml;berschriften
+
+;Source:
+Quelle:
+
+;You might want to <a href="install.php">install moonmoon</a>.
+Sie m&ouml;chten wahrscheinlich <a href="install.php">moonmoon installieren</a>.
+
+;moonmoon installation
+moonmoon Installation
+
+;Congratulations! Your moonmoon is ready.
+Gl&uuml;ckwunsch! Ihre moonmoon Installation ist nun bereit.
+
+;What's next?
+Was nun?
+
+;<strong>Delete</strong> <code>install.php</code> with your FTP software.
+<strong>L&ouml;schen</strong> Sie <code>install.php</code>mit ihrem FTP-Programm.
+
+;Use your password to go to the <a href="./admin/">administration panel</a>
+Benutzen Sie ihr Administratorpasswort zum Zugriff auf die <a href="./admin/">Verwaltung</a>
+
+
