@@ -42,12 +42,22 @@ header('Content-type: text/html; charset=UTF-8');
                 <?php foreach ($items as $item): ?>
                     <?php if($category != null) {
 							if($item->get_feed()->getCategory() == $category){
-								$print = true;
+								if($item->get_date("U") >= date("U",mktime(0,0,0,date("n"),date("j"),date("Y"))) && $item->get_date("U") <=  date("U",mktime( 23 , 59 , 59 ,date("n"),date("j"),date("Y"))))
+								{
+									$print = true;
+								} else {
+									$print = false;
+								}
 							} else {
 								$print = false;
 							}
 						} else {
-							$print = true;
+							if($item->get_date("U") >= date("U",mktime(0,0,0,date("n"),date("j"),date("Y"))) && $item->get_date("U") <=  date("U",mktime( 23 , 59 , 59 ,date("n"),date("j"),date("Y"))))
+							{
+								$print = true;
+							} else {
+								$print = false;
+							}
 						} ?>
 						<?php if($print == true) :
 							$arParsedUrl = parse_url($item->get_feed()->getWebsite());
