@@ -1,6 +1,7 @@
 <?php
 $limit = $PlanetConfig->getMaxDisplay();
 $count = 0;
+$offset = 0;
 $category = null;
 $print = false;
 if(isset($_GET['filter']))
@@ -10,6 +11,13 @@ if(isset($_GET['filter']))
 		$category = urldecode($_GET['filter']);
 	}
 }
+
+if(isset($_GET['offset']))
+{
+	$offset = intval($_GET['offset']);
+}
+$datestart = mktime(0,0,0,date("n") + $offset, date("j"),date("Y"));
+$datestop = mktime(23,59,59,date("n") + $offset, date("j"),date("Y"));
 header('Content-type: text/html; charset=UTF-8');
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,7 +50,7 @@ header('Content-type: text/html; charset=UTF-8');
                 <?php foreach ($items as $item): ?>
                     <?php if($category != null) {
 							if($item->get_feed()->getCategory() == $category){
-								if($item->get_date("U") >= date("U",mktime(0,0,0,date("n"),date("j"),date("Y"))) && $item->get_date("U") <=  date("U",mktime( 23 , 59 , 59 ,date("n"),date("j"),date("Y"))))
+								if($item->get_date("U") >= $datestart && $item->get_date("U") <=  $datestop)
 								{
 									$print = true;
 								} else {
@@ -52,7 +60,7 @@ header('Content-type: text/html; charset=UTF-8');
 								$print = false;
 							}
 						} else {
-							if($item->get_date("U") >= date("U",mktime(0,0,0,date("n"),date("j"),date("Y"))) && $item->get_date("U") <=  date("U",mktime( 23 , 59 , 59 ,date("n"),date("j"),date("Y"))))
+							if($item->get_date("U") >= $datestart && $item->get_date("U") <=  $datestop)
 							{
 								$print = true;
 							} else {

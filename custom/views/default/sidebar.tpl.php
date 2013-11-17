@@ -37,6 +37,17 @@ usort($all_people, array('PlanetFeed', 'compare'));
     </div>
 	
 	<div class="section">
+		<h2><?=_g('Day selection')?></h2>
+		<ul>
+			<li><a href="?offset=<?=$offset-1?>"><?_g('Back')?></a></li>
+			<?php if($offset < 0){ ?>
+			<li><a href="?offset=<?=$offset+1?>"><?_g('Forward')?></a></li>
+			<?php } ?>
+			<li><a href="?offset=0"><?_g('Today')?></a></li>
+		</ul>
+	</div>
+	
+	<div class="section">
 	    <h2><?=_g('Categories')?></h2>
         <ul>
 		<?php foreach ($categories as $category) : ?>
