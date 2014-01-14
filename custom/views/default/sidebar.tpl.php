@@ -39,11 +39,11 @@ usort($all_people, array('PlanetFeed', 'compare'));
 	<div class="section">
 		<h2><?=_g('Day selection')?></h2>
 		<ul>
-			<li><a href="?offset=<?=$offset-1?>"><?_g('Back')?></a></li>
+			<li><a href="?offset=<?=$offset-1?>"><?=_g('Back')?></a></li>
 			<?php if($offset < 0){ ?>
-			<li><a href="?offset=<?=$offset+1?>"><?_g('Forward')?></a></li>
+			<li><a href="?offset=<?=$offset+1?>"><?=_g('Forward')?></a></li>
 			<?php } ?>
-			<li><a href="?offset=0"><?_g('Today')?></a></li>
+			<li><a href="?offset=0"><?=_g('Today')?></a></li>
 		</ul>
 	</div>
 	
